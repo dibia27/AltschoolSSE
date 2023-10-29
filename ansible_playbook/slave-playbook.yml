@@ -1,0 +1,33 @@
+- hosts: all
+  become: true
+  vars:
+    db_user: Arua
+    db_password: Arua527
+
+  tasks:
+    - name: Update and upgrade the server
+      apt:
+        update_cache: yes
+        upgrade: safe
+
+    - name: Cron job to check the server uptime every 12 A.M
+      ansible.builtin.cron:
+        name: "Server's uptime every 12 A.M"
+        state: present
+        minute: "0"
+        hour: "0"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        job: "/usr/bin/uptime > /var/log/uptime_check.log 2>&1"
+
+    - name: Copy the bash script from the master to the slave machine
+      copy:
+        src: laravel_slave.sh  # Ensure the script is in the same directory as the playbook
+        dest: ~/laravel_slave.sh
+        owner: root
+        group: root
+        mode: 0744
+
+    - name: Run the bash script on the slave machine
+      command: "~/laravel_slave.sh {{ db_user }} {{ db_password }}"

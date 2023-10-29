@@ -1,3 +1,7 @@
+#!/bin/bash
+vagrant init ubuntu/focal64
+
+cat <<EOF > Vagrantfile
 Vagrant.configure("2") do |config|
 
   config.vm.define "slave_1" do |slave_1|
@@ -29,3 +33,14 @@ Vagrant.configure("2") do |config|
       vb.cpus = "2"
     end
 end
+EOF
+
+vagrant up
+
+
+
+
+
+
+  
+
