@@ -111,4 +111,4 @@ Overall, the ansible.cfg file configures Ansible settings, the deploy.yaml playb
 This Ansible project automates the deployment and configuration of servers and a Laravel application, making it more efficient and reproducible. It's a powerful tool for infrastructure automation and application deployment.
 
 A proof of the deployments
-![master](<images/Screenshot 2023-10-28 at 12.42.17 AM.png>)
+![lavarel.deployed](lavarel.png)
